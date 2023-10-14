@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private BoxCollider2D coll;
@@ -11,11 +11,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
 
-    private float dirX = 0f;
+    private float moveInput;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float fallForce;
-    Vector2 vecGravity; 
+    [SerializeField] private float jumpPower;
+
 
     private enum MovementState { idle, running, jumping, falling }
 
@@ -24,7 +23,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        vecGravity = new Vector2(0, -Physics2D.gravity.y);
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -34,29 +32,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //move
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        moveInput = Input.GetAxisRaw("Horizontal");
 
-        //jump
-        if (Input.GetKey("space") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             //jumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
-        //gravity
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity -= vecGravity * fallForce * Time.deltaTime;
-        }
-
-        //flip
-        if (dirX > 0f)
+        if (moveInput > 0f)
         {
             sprite.flipX = false;
         }
-        else if (dirX < 0f)
+        else if (moveInput < 0f)
         {
             sprite.flipX = true;
         }
@@ -64,16 +52,26 @@ public class PlayerController : MonoBehaviour
         //UpdateAnimationState();
     }
 
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+    }
+
     //private void UpdateAnimationState()
     //{
     //    MovementState state;
 
-    //    if (dirX > 0f)
+    //    if (moveInput > 0f)
     //    {
     //        state = MovementState.running;
     //        sprite.flipX = false;
     //    }
-    //    else if (dirX < 0f)
+    //    else if (moveInput < 0f)
     //    {
     //        state = MovementState.running;
     //        sprite.flipX = true;
@@ -94,14 +92,4 @@ public class PlayerController : MonoBehaviour
 
     //    anim.SetInteger("state", (int)state);
     //}
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
-    }
 }
