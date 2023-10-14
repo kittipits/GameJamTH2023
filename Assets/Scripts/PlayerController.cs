@@ -12,8 +12,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private float dirX = 0f;
-    [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float fallForce;
+    Vector2 vecGravity; 
 
     private enum MovementState { idle, running, jumping, falling }
 
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        vecGravity = new Vector2(0, -Physics2D.gravity.y);
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -31,16 +34,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //move
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
-        if (Input.GetKey(KeyCode.Space) && IsGrounded())
+        //jump
+        if (Input.GetKey("space") && IsGrounded())
         {
-            jumpSoundEffect.Play();
+            //jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        //animation wo jissou suru mae ni kaite oku 
+        //gravity
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity -= vecGravity * fallForce * Time.deltaTime;
+        }
+
+        //flip
         if (dirX > 0f)
         {
             sprite.flipX = false;
@@ -83,6 +94,11 @@ public class PlayerController : MonoBehaviour
 
     //    anim.SetInteger("state", (int)state);
     //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
 
     private bool IsGrounded()
     {
