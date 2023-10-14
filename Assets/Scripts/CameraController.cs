@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] Transform MapLeft;
+    [SerializeField] Transform MapRight;
+    [SerializeField] Transform MapTop;
+    [SerializeField] Transform MapBottom;
     Transform target;
     Vector3 velocity = Vector3.zero;
 
@@ -17,9 +21,18 @@ public class CameraController : MonoBehaviour
     
     private void Awake()
     {
-        xLimit.x = transform.localPosition.x - 0.1f;
-        xLimit.y = transform.localPosition.x + 18.0f + 0.1f;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void Start()
+    {
+        Camera camera = Camera.main;
+        float halfHeight = camera.orthographicSize;
+        float halfWidth = camera.aspect * halfHeight;
+        xLimit.x = MapLeft.position.x + halfWidth;
+        xLimit.y = MapRight.position.x - halfWidth;
+        yLimit.x = MapBottom.position.y + halfHeight;
+        yLimit.y = MapTop.position.y - halfHeight;
     }
 
     private void FixedUpdate()
@@ -27,11 +40,5 @@ public class CameraController : MonoBehaviour
         Vector3 targetPosition = target.position + positionOffset;
         transform.position = new Vector3(Mathf.Clamp(targetPosition.x, xLimit.x, xLimit.y), Mathf.Clamp(targetPosition.y, yLimit.x, yLimit.y), transform.position.z);
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-    }
-
-    public void MoveToNewRoom(Transform newRoom)
-    { 
-        xLimit.x = newRoom.position.x - 0.1f;
-        xLimit.x = newRoom.position.x + 0.1f;
     }
 }
