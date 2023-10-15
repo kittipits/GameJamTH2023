@@ -4,8 +4,7 @@ using UnityEngine;
 public class OneWayPlatform : MonoBehaviour
 {
     private GameObject currentOneWayPlatform;
-
-    [SerializeField] private BoxCollider2D playerCollider;
+    [SerializeField] private CapsuleCollider2D playerCollider;
 
     private void Update()
     {
