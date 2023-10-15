@@ -11,12 +11,10 @@ public class CameraController : MonoBehaviour
     Transform target;
     Vector3 velocity = Vector3.zero;
 
-    [Range(0, 1)]
-    public float smoothTime;
+    [Range(0, 1)] public float smoothTime;
 
     public Vector3 positionOffset;
-
-    [Header("Axis Limitation")] public Vector2 yLimit;
+    public Vector2 yLimit;
     public Vector2 xLimit;
     
     private void Awake()
