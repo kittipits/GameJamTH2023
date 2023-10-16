@@ -39,8 +39,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 263296093
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ngew
+    uniqueID: 3713713251
+    locked: 0
+  - name: Bua
+    uniqueID: 1869486189
+    locked: 0
+  - name: Ground
+    uniqueID: 767928281
     locked: 0
   - name: Player
     uniqueID: 1898766907

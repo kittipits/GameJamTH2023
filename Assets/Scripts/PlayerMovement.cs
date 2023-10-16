@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveInput;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
-
+    public float knockbackForce;
 
     private enum MovementState { idle, running, jumping, falling }
 
@@ -92,4 +92,14 @@ public class PlayerMovement : MonoBehaviour
 
     //    anim.SetInteger("state", (int)state);
     //}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Vector2 difference = (transform.position - other.transform.position).normalized;
+            Vector2 force = difference * knockbackForce;
+            rb.AddForce(force, ForceMode2D.Impulse);
+        }
+    }
 }
