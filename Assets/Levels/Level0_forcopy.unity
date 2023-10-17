@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 133608599}
   - component: {fileID: 133608601}
   m_Layer: 6
-  m_Name: Floor 8
+  m_Name: Floor Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 217209463}
   - component: {fileID: 217209465}
   m_Layer: 6
-  m_Name: Floor 9
+  m_Name: Floor Bottom Right Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 240071496}
   - component: {fileID: 240071495}
   m_Layer: 6
-  m_Name: Floor 1
+  m_Name: Floor Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 316663707}
   - component: {fileID: 316663708}
   m_Layer: 0
-  m_Name: Floor 3-grey
+  m_Name: Floor Top Right Corner -grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1061,7 +1061,7 @@ GameObject:
   - component: {fileID: 479110705}
   - component: {fileID: 479110706}
   m_Layer: 0
-  m_Name: Floor 4-grey
+  m_Name: Floor Right - grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1145,7 +1145,7 @@ GameObject:
   - component: {fileID: 523386295}
   - component: {fileID: 523386296}
   m_Layer: 0
-  m_Name: Floor 8-grey
+  m_Name: Floor Left - grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 538058299}
   - component: {fileID: 538058300}
   m_Layer: 0
-  m_Name: Floor 7-grey
+  m_Name: Floor Bottom Left Corner -grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1313,7 +1313,7 @@ GameObject:
   - component: {fileID: 579651638}
   - component: {fileID: 579651639}
   m_Layer: 0
-  m_Name: Floor 2-grey
+  m_Name: Floor Top Left Corner -grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2112,7 +2112,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 5
-  jumpPower: 40
+  jumpPower: 35
   knockbackForce: 0
   jumpSoundEffect: {fileID: 0}
 --- !u!50 &817394323
@@ -2540,7 +2540,7 @@ GameObject:
   - component: {fileID: 977008546}
   - component: {fileID: 977008547}
   m_Layer: 0
-  m_Name: Floor 1-grey
+  m_Name: Floor Top -grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2782,7 +2782,7 @@ GameObject:
   - component: {fileID: 1094547659}
   - component: {fileID: 1094547661}
   m_Layer: 6
-  m_Name: Floor 7
+  m_Name: Floor Bottom Left Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3072,7 +3072,7 @@ GameObject:
   - component: {fileID: 1258675617}
   - component: {fileID: 1258675619}
   m_Layer: 6
-  m_Name: Floor 5
+  m_Name: Floor Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3314,7 +3314,7 @@ GameObject:
   - component: {fileID: 1404325517}
   - component: {fileID: 1404325519}
   m_Layer: 6
-  m_Name: Floor 3
+  m_Name: Floor Top Right Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3429,7 +3429,7 @@ GameObject:
   - component: {fileID: 1432370533}
   - component: {fileID: 1432370534}
   m_Layer: 0
-  m_Name: Floor 9-grey
+  m_Name: Floor Bottom Right Corner -grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3513,7 +3513,7 @@ GameObject:
   - component: {fileID: 1438256268}
   - component: {fileID: 1438256270}
   m_Layer: 6
-  m_Name: Floor 6
+  m_Name: Floor Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3597,7 +3597,7 @@ GameObject:
   - component: {fileID: 1450167846}
   - component: {fileID: 1450167848}
   m_Layer: 6
-  m_Name: Floor 2
+  m_Name: Floor Top Left Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3837,7 +3837,7 @@ GameObject:
   - component: {fileID: 1829812072}
   - component: {fileID: 1829812073}
   m_Layer: 0
-  m_Name: Floor 5-grey
+  m_Name: Floor Midle-grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3921,7 +3921,7 @@ GameObject:
   - component: {fileID: 1959627842}
   - component: {fileID: 1959627843}
   m_Layer: 0
-  m_Name: Floor 6-grey
+  m_Name: Floor Bottom - grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4143,7 +4143,7 @@ GameObject:
   - component: {fileID: 2045084243}
   - component: {fileID: 2045084245}
   m_Layer: 6
-  m_Name: Floor 4
+  m_Name: Floor Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
