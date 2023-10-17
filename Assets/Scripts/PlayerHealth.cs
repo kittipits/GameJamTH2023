@@ -14,6 +14,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void Start()
+    {
+
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
@@ -27,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
             if (!isDead)
             {
                 //anim.SetTrigger("die");
-                GetComponent<PlayerMovement>().enabled = false;
+                gameObject.SetActive(false);
                 isDead = true;
             }
         }

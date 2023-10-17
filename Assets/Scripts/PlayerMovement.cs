@@ -11,12 +11,17 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
 
-    private float moveInput;
+    public float moveInput;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
-    public float knockbackForce;
 
     [SerializeField] private AudioSource jumpSoundEffect;
+
+    [Header("Knockback")]
+    [SerializeField] private Transform center;
+    [SerializeField] private float knockbackVel = 8f;
+    [SerializeField] private float knockbackTime = 1f;
+    [SerializeField] private bool knockbacked;
 
     // Start is called before the first frame update
     private void Start()
@@ -36,23 +41,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            anim.SetBool("jumping", true);
         }
-
-        UpdateAnimationState();
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
-    }
-
-    private void UpdateAnimationState()
-    {
 
         if (moveInput > 0f)
         {
@@ -69,23 +59,39 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("running", false);
         }
 
-        //if (rb.velocity.y > .1f)
-        //{
-        //    state = MovementState.jumping;
-        //}
-        //else if (rb.velocity.y < -.1f)
-        //{
-        //    state = MovementState.falling;
-        //}
+        if (rb.velocity.y <= 0)
+        {
+            anim.SetBool("jumping", false);
+        }
+        else
+        {
+            anim.SetBool("jumping", true);
+        }
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void FixedUpdate()
     {
-        if (other.tag == "Enemy")
-        {
-            Vector2 difference = (transform.position - other.transform.position).normalized;
-            Vector2 force = difference * knockbackForce;
-            rb.AddForce(force, ForceMode2D.Impulse);
-        }
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+    }
+
+    public void Knockback(Transform t)
+    {
+        var dir = center.position - t.position;
+        knockbacked = true;
+        rb.velocity = dir.normalized * knockbackVel;
+
+        StartCoroutine(Unknockback());
+    }
+
+    private IEnumerator Unknockback()
+    {
+        yield return new WaitForSeconds(knockbackTime);
+        knockbacked = false;
     }
 }
