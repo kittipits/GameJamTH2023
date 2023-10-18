@@ -12,4 +12,22 @@ public class EnemyKnockback : MonoBehaviour
             player.Knockback(transform);
         }
     }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        var player = other.collider.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            player.Knockback(transform);
+        }
+    }
+
+    //private void OnCollisionExit2D(Collision2D other)
+    //{
+    //    var player = other.collider.GetComponent<PlayerMovement>();
+    //    if (player != null)
+    //    {
+    //        player.Knockback(transform);
+    //    }
+    //}
 }
