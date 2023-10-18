@@ -20,11 +20,13 @@ public class EnemyCombat : MonoBehaviour
     //References
     private Animator anim;
     private PlayerHealth playerHealth;
+    private Rigidbody2D rb;
     //private EnemyPatrol enemyPatrol;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         //enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
@@ -40,6 +42,15 @@ public class EnemyCombat : MonoBehaviour
                 cooldownTimer = 0;
                 anim.SetTrigger("meleeAttack");
             }
+        }
+
+        if (rb.velocity.x != 0)
+        {
+            anim.SetBool("moving", true);
+        }
+        else
+        {
+            anim.SetBool("moving", false);
         }
 
         //if (enemyPatrol != null)
