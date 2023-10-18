@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     public float currentHealth { get; private set; }
     private Animator anim;
-    private bool isDead;
+    public bool isDead;
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration;
@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 //anim.SetTrigger("die");
                 gameObject.SetActive(false);
+                spriteRend.enabled = false;
                 isDead = true;
             }
         }
