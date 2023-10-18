@@ -84,7 +84,8 @@ public class PlayerMovement : MonoBehaviour
     {
         var dir = center.position - t.position;
         knockbacked = true;
-        rb.velocity = dir.normalized * knockbackVel;
+        transform.Translate(dir.normalized * knockbackVel * Time.deltaTime);
+        //rb.velocity = dir.normalized * knockbackVel;
 
         StartCoroutine(Unknockback());
     }
