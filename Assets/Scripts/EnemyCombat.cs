@@ -4,143 +4,71 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    public Transform raycast;
-    public LayerMask raycastMask;
-    public float raycastLength;
-    public float attackDistance;
-    public float moveSpeed;
-    public float timer;
-    public LayerMask playerLayers;
-    public int attackDamage;
+    [Header("Attack Parameters")]
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private float range;
+    [SerializeField] private int damage;
 
-    private RaycastHit2D hit;
-    private GameObject target;
+    [Header("Collider Parameters")]
+    [SerializeField] private float colliderDistance;
+    [SerializeField] private BoxCollider2D boxCollider;
+
+    [Header("Player Layer")]
+    [SerializeField] private LayerMask playerLayer;
+    private float cooldownTimer = Mathf.Infinity;
+
+    //References
     private Animator anim;
-    private float distance;
-    private bool attackMode;
-    private bool inRange;
-    private bool cooling;
-    private float intTimer;
+    private PlayerHealth playerHealth;
+    //private EnemyPatrol enemyPatrol;
 
     private void Awake()
     {
-        intTimer = timer;
         anim = GetComponent<Animator>();
+        //enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (inRange)
-        {
-            hit = Physics2D.Raycast(raycast.position, Vector2.left, raycastLength, raycastMask);
+        cooldownTimer += Time.deltaTime;
 
-            RaycastDebugger();
+        //Attack only when player in sight?
+        if (PlayerInSight())
+        {
+            if (cooldownTimer >= attackCooldown)
+            {
+                cooldownTimer = 0;
+                anim.SetTrigger("meleeAttack");
+            }
         }
+
+        //if (enemyPatrol != null)
+        //    enemyPatrol.enabled = !PlayerInSight();
+    }
+
+    private bool PlayerInSight()
+    {
+        RaycastHit2D hit =
+            Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
+            0, Vector2.left, 0, playerLayer);
 
         if (hit.collider != null)
-        {
-            EnemyLogic();
-        }
-        else if (hit.collider == null)
-        {
-            inRange = false;
-            //anim.SetBool("canWalk", false);
-            StopAttack();
-        }
+            playerHealth = hit.transform.GetComponent<PlayerHealth>();
 
-        if (attackMode)
-        {
-            DealDamage();
-        }
+        return hit.collider != null;
     }
-
-    private void OnTriggerEnter2D(Collider2D trig)
+    private void OnDrawGizmos()
     {
-        if (trig.gameObject.tag == "Player")
-        {
-            target = trig.gameObject;
-            inRange = true;
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+            new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
-    void EnemyLogic()
+    private void DamagePlayer()
     {
-        distance = Vector2.Distance(transform.position, target.transform.position);
+        if (PlayerInSight())
+            playerHealth.TakeDamage(damage);
 
-        if (distance > attackDistance)
-        {
-            Move();
-            StopAttack();
-        }
-        else if (attackDistance >= distance && cooling == false)
-        {
-            Attack();
-        }
-
-        if (cooling)
-        {
-            Cooldown();
-            // anim.SetBool("Attack", false);
-        }
-    }
-
-    void Move()
-    {
-        //anim.SetBool("canWalk", true);
-    }
-
-    void Attack()
-    {
-        timer = intTimer;
-        attackMode = true;
-
-        //anim.SetBool("canWalk", false);
-        //anim.SetBool("Attack", true);
-    }
-
-    void Cooldown()
-    { 
-        timer -= Time.deltaTime;
-
-        if (timer <= 0 && cooling && attackMode)
-        { 
-            cooling = false;
-            timer = intTimer;
-        }
-    }
-
-    void StopAttack()
-    {
-        cooling = false;
-        attackMode = false;
-        //anim.SetBool("Attack", false);
-    }
-
-    public void TriggerCooling() 
-    {
-        cooling = true;
-    }
-
-    void RaycastDebugger()
-    {
-        if (distance > attackDistance)
-        {
-            Debug.DrawRay(raycast.position, Vector2.left * raycastLength, Color.red);
-        }
-        else if (attackDistance > distance)
-        {
-            Debug.DrawRay(raycast.position, Vector2.left * raycastLength, Color.green);
-        }
-    }
-
-    void DealDamage() 
-    {
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(raycast.position, attackDistance, playerLayers);
-
-        foreach (Collider2D player in hitPlayer)
-        {
-            player.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
-        }
-        attackMode = false;
     }
 }

@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxis("Horizontal");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -46,13 +46,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput > 0f)
         {
+            transform.localScale = Vector3.one;
             anim.SetBool("running", true);
-            sprite.flipX = false;
         }
         else if (moveInput < 0f)
         {
+            transform.localScale = new Vector3(-1, 1, 1);
             anim.SetBool("running", true);
-            sprite.flipX = true;
         }
         else
         {
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {       
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
     }
 
