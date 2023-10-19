@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth;
@@ -34,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
             if (!isDead)
             {
                 //anim.SetTrigger("die");
+                SceneManager.LoadScene("game over");
                 gameObject.SetActive(false);
                 spriteRend.enabled = false;
                 isDead = true;

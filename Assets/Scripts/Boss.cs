@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Boss : MonoBehaviour
 {
     EnemyHealth bossHealth;
+    public GameObject finish;
+    public Transform finishPos;
 
     private bool levelcompleted = false;
 
@@ -16,8 +18,9 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
-        if (bossHealth.isDead)
+        if (bossHealth.currentHealth <= 0)
         {
+            Instantiate(finish, finishPos.position, Quaternion.identity); 
             levelcompleted = true;
             Invoke("CompleteLevel", 2f);
         }
