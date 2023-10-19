@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
         //play hurt animation
 
-        if (currentHealth < 0) 
+        if (currentHealth <= 0) 
         {
             Die();
         }
@@ -33,7 +34,8 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Enemy died!");
+        isDead = true;
+        Destroy(gameObject);
         //die animation
     }
 
