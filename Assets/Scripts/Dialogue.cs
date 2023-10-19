@@ -1,13 +1,11 @@
-using Assets.SimpleLocalization.Scripts;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    public Text textComponent;
+    public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
 
@@ -30,7 +28,7 @@ public class Dialogue : MonoBehaviour
                 NextLine();
             }
             else
-            { 
+            {
                 StopAllCoroutines();
                 textComponent.text = lines[index];
             }
@@ -40,8 +38,6 @@ public class Dialogue : MonoBehaviour
     void StartDialogue()
     {
         index = 0;
-        //Localize();
-        //LocalizationManager.OnLocalizationChanged += Localize;
         StartCoroutine(TypeLine());
     }
 
@@ -59,27 +55,12 @@ public class Dialogue : MonoBehaviour
         if (index < lines.Length - 1)
         {
             index++;
-            //Localize();
-            //LocalizationManager.OnLocalizationChanged += Localize;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else
-        { 
-        gameObject.SetActive(false);
+        {
+            gameObject.SetActive(false);
         }
     }
-
-    //public void OnDestroy()
-    //{
-    //    LocalizationManager.OnLocalizationChanged -= Localize;
-    //}
-
-    //private void Localize()
-    //{
-    //    if (lines != null)
-    //    {
-    //        textComponent.text = LocalizationManager.Localize(lines[index]);
-    //    }
-    //}
 }
