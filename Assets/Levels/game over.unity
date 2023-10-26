@@ -273,16 +273,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 516355606}
+        m_TargetAssemblyTypeName: LoadTitleScene, Assembly-CSharp
+        m_MethodName: LoadTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LoadTitleScene.cs
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &516355604
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 516355600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9c3f73fcb2f194ba27c294897f3ba1, type: 3}
+  m_Script: {fileID: 11500000, guid: cb76ff73aaae65849855bcd53010a6ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &613116926
@@ -996,6 +996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029353596}
   - component: {fileID: 2029353598}
+  - component: {fileID: 2029353599}
   - component: {fileID: 2029353597}
   m_Layer: 5
   m_Name: Panel
@@ -1064,3 +1065,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029353595}
   m_CullTransparentMesh: 1
+--- !u!114 &2029353599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029353595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb76ff73aaae65849855bcd53010a6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

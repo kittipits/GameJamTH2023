@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public bool isDead = false;
+    public GameObject heart;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,11 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         isDead = true;
+        int randomNumber = Random.Range(1, 101);
+        if (randomNumber <= 50)
+        {
+            Instantiate(heart, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
         //die animation
     }

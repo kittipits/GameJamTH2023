@@ -150,6 +150,7 @@ MonoBehaviour:
   maxHealth: 500
   currentHealth: 100
   isDead: 0
+  heart: {fileID: 7718827114379962736, guid: 5f6239913fba7664386f3edd195b171b, type: 3}
 --- !u!114 &8891234847786661546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,3 +429,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d4cdcdfb90c9647b50f61eaff62c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finish: {fileID: 0}
+  finishPos: {fileID: 0}

@@ -11752,6 +11752,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffe03e2f82f38645b52c641c803a862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1054717456 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3608844766023016955, guid: f96d5cbc2dfc28a439003e4e84ed2047, type: 3}
+  m_PrefabInstance: {fileID: 1054717454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1062900197
 GameObject:
   m_ObjectHideFlags: 0
@@ -18496,7 +18501,7 @@ PrefabInstance:
     - target: {fileID: 2921350198676496627, guid: d80024b16dbfc124294e842f4b092962, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1606913276}
+      objectReference: {fileID: 1054717456}
     - target: {fileID: 6501999120953934649, guid: d80024b16dbfc124294e842f4b092962, type: 3}
       propertyPath: m_Name
       value: Crow
@@ -19545,11 +19550,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1606913276 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3608844766634615775, guid: f96d5cbc2dfc28a439003e4e84ed2047, type: 3}
-  m_PrefabInstance: {fileID: 1054717454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1609977992
 GameObject:
   m_ObjectHideFlags: 0

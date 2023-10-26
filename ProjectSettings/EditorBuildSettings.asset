@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/videolevel/end.unity
     guid: 63552169de6e8434b8b1941db777ca39
+  - enabled: 1
+    path: Assets/Levels/game over.unity
+    guid: 528e264aace23904da0ea9e023f694fd
   m_configObjects: {}

@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  isDead: 0
+  heart: {fileID: 7718827114379962736, guid: 5f6239913fba7664386f3edd195b171b, type: 3}
 --- !u!114 &7989096236440653078
 MonoBehaviour:
   m_ObjectHideFlags: 0

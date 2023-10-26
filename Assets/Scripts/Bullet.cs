@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     private float timer;
+    Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,11 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector3 direction = player.transform.position - transform.position;
+        if (player != null)
+        {
+           direction  = player.transform.position - transform.position;
+        }
+        
         rb.velocity = new Vector2 (direction.x, direction.y).normalized * force;
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;

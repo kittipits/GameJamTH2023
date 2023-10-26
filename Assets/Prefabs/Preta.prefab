@@ -156,6 +156,7 @@ MonoBehaviour:
   maxHealth: 60
   currentHealth: 0
   isDead: 0
+  heart: {fileID: 7718827114379962736, guid: 5f6239913fba7664386f3edd195b171b, type: 3}
 --- !u!114 &3704378563760939191
 MonoBehaviour:
   m_ObjectHideFlags: 0
