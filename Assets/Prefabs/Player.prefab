@@ -189,10 +189,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveInput: 0
-  moveSpeed: 5
-  jumpPower: 32
-  jumpTime: 0.5
-  jumpMultiplier: 5
+  moveSpeed: 5.7
+  jumpPower: 25
+  jumpTime: 1.5
+  jumpMultiplier: 7
   groundCheck: {fileID: 9210068575223015854}
   jumpSoundEffect: {fileID: 0}
   center: {fileID: 3608844765123847811}
