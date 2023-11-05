@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public int maxHealth;
+    public float currentHealth { get; private set; }
     public bool isDead = false;
     public GameObject heart;
 
