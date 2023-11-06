@@ -9,36 +9,28 @@ using UnityEngine.UI;
 public class DialogueScroll : MonoBehaviour
 {
     [SerializeField] private Sprite[] imageFolder;
-    [SerializeField] private Button button; 
-    private int index = 0;
+    [SerializeField] private Button skipButton;
+    [SerializeField] private Button nextButton;
+    public Image image { get; private set; }
+    public int index = 0;
 
-    // Start is called before the first frame update
-    void Start()
+private void Start()
     {
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Image image = gameObject.GetComponent<Image>();
+        image = gameObject.GetComponent<Image>();
         image.sprite = imageFolder[index];
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (index >= imageFolder.Length - 1 && skipButton != null)
         {
-            if (index < imageFolder.Length - 1)
-            {
-                image.gameObject.SetActive(false);
-                index++;
-                image.gameObject.SetActive(true);
-            }
-            else if (index >= imageFolder.Length - 1 && button != null)
-            { 
-                button.onClick.Invoke();
-            }
-            else
-            {
-                return;
-            }
+            skipButton.onClick.Invoke();
+        }
+        else
+        {
+            return;
         }
     }
 }

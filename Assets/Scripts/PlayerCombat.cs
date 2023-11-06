@@ -10,6 +10,8 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
     public Transform attackPoint;
 
+    [SerializeField] private AudioSource attackSoundEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
+            attackSoundEffect.Play();
         }
     }
 

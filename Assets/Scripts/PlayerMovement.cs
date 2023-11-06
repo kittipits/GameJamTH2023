@@ -20,8 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     bool isJumping;
     float jumpCounter;
-
-    [SerializeField] private AudioSource jumpSoundEffect;
+    float walkCounter;
 
     [Header("Knockback")]
     [SerializeField] private Transform center;
@@ -29,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float knockbackTime = 1f;
     [SerializeField] private bool knockbacked;
     public bool canMove;
+
+    [Header("Sound Effect")]
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource walkSoundEffect;
+    [SerializeField] private float walkTimer;
 
     // Start is called before the first frame update
     private void Start()
@@ -40,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
 
         vecGravity = new Vector2(0, -Physics2D.gravity.y);
+        walkCounter = walkTimer - 0.01f;
     }
 
     // Update is called once per frame
@@ -57,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded() && rb.velocity.y == 0)
         {
-            //jumpSoundEffect.Play();
+            jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             isJumping = true;
             jumpCounter = 0;
@@ -79,13 +84,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput > 0f)
         {
+
             transform.localScale = Vector3.one;
             anim.SetBool("running", true);
+            walkCounter += Time.deltaTime;
         }
         else if (moveInput < 0f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             anim.SetBool("running", true);
+            walkCounter += Time.deltaTime;
         }
         else
         {
@@ -99,6 +107,17 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             anim.SetBool("jumping", true);
+        }
+
+        if (IsGrounded() && walkCounter > walkTimer)
+        {
+            walkSoundEffect.Play();
+            walkCounter = 0;
+        }
+
+        if (moveInput == 0)
+        {
+            walkCounter = walkTimer - 0.01f;
         }
     }
 

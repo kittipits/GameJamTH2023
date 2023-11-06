@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public float currentHealth { get; private set; }
     public bool isDead = false;
     public GameObject heart;
+    [SerializeField] AudioSource hurtSoundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    { 
+    {
+        hurtSoundEffect.Play();
         currentHealth -= damage;
-
-        //play hurt animation
 
         if (currentHealth <= 0) 
         {

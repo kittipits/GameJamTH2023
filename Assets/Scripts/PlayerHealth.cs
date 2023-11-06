@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRend;
     private PlayerMovement movement;
 
+    [SerializeField] private AudioSource hurtSoundEffect;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -41,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        hurtSoundEffect.Play();
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
 
         if (currentHealth > 0)
